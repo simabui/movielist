@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Module 13</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <form class="search-form" id="search-form">
+        <input
+          type="text"
+          name="query"
+          autocomplete="off"
+          placeholder="Search images..."
+        />
+        <button id="load" class="button">Reset</button>
+      </form>
+      <ul class="gallery">
+        <div class="gallery-width"></div>
+        <!-- Список <li> с карточками изображений -->
+      </ul>
+      <p class="infinite-scroll-last">No more pages to Load</p>
+      <p class="scroll-error">No images were found</p>
+    </div>
+  </body>
+</html>
