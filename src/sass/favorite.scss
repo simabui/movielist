@@ -1,0 +1,35 @@
+.favorite {
+  margin-top: 10px;
+  width: 260px;
+  height: 300px;
+  border: 1px solid #000;
+
+  &__title {
+    text-align: center;
+  }
+
+  &-list {
+    padding: 0 16px;
+  }
+
+  li {
+    list-style-type: none;
+  }
+}
+
+.fav {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__title {
+    margin: 0;
+    font-weight: 700;
+  }
+
+  &__delete {
+    font-weight: 700;
+    cursor: pointer;
+  }
+}

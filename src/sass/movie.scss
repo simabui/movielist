@@ -6,19 +6,41 @@
 }
 
 .movie {
-  padding: 10px 0;
   align-items: center;
   margin-top: 10px;
   flex-basis: 150px;
   cursor: pointer;
+  position: relative;
   &__image {
     width: 120px;
     height: 177px;
     margin: 0 auto;
   }
 
+  &__year {
+    margin-top: 10px;
+  }
+
   &__description {
     margin-top: 10px;
     text-align: center;
+  }
+}
+// favorie star
+.star {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 5px;
+  top: -10px;
+  cursor: pointer;
+  z-index: 999;
+
+  &-img {
+    background-image: url("../images/star.svg");
+  }
+
+  &-img-active {
+    background-image: url("../images/star-active.svg");
   }
 }
