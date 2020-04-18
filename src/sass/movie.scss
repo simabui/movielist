@@ -1,11 +1,24 @@
 .movies {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
+  width: 700px;
 }
 
 .movie {
+  padding: 10px 0;
+  align-items: center;
+  margin-top: 10px;
+  flex-basis: 150px;
+  cursor: pointer;
   &__image {
     width: 120px;
-    height: auto;
+    height: 177px;
+    margin: 0 auto;
+  }
+
+  &__description {
+    margin-top: 10px;
+    text-align: center;
   }
 }

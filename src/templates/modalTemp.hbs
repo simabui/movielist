@@ -1,0 +1,22 @@
+<div>
+  <div class="modal__main">
+    <div class="modal__close">X</div>
+    <img src={{img}} alt="poster" class="modal__image" />
+    <div class="modal__description">
+      <h2 class="modal__title">{{name}}</h2>
+      <p class="modal__text">{{description}}</p>
+    </div>
+  </div>
+  <div class="modal__year"><b>{{year}}</b></div>
+  <div class="modal__secondary">
+    <ul class="modal__genres">
+      {{#each genres}}
+      <li class="modal__genre">{{this}}</li>
+      {{/each}}
+    </ul>
+    <div class="modal__emp">
+      <p>Director: <b>{{director}}</b></p>
+      <p>Starring: {{#each starring}}{{this}},{{/each}}</p>
+    </div>
+  </div>
+</div>
