@@ -13,10 +13,10 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           "css-loader",
           "postcss-loader",
-          "sass-loader"
-        ]
-      }
-    ]
+          "sass-loader",
+        ],
+      },
+    ],
   },
   plugins: [
     new ImageminPlugin({
@@ -32,40 +32,40 @@ module.exports = {
             {
               plugins: [
                 {
-                  removeViewBox: false
-                }
-              ]
-            }
-          ]
-        ]
-      }
+                  removeViewBox: false,
+                },
+              ],
+            },
+          ],
+        ],
+      },
     }),
     new CssUrlRelativePlugin(),
     new MiniCssExtractPlugin({
       filename: "css/[name].[contenthash].css",
-      chunkFilename: "css/[name].[id].[contenthash].css"
+      chunkFilename: "css/[name].[id].[contenthash].css",
     }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require("cssnano"),
       cssProcessorPluginOptions: {
-        preset: ["default", { discardComments: { removeAll: true } }]
+        preset: ["default", { discardComments: { removeAll: true } }],
       },
-      canPrint: true
+      canPrint: true,
     }),
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: "./src/index.pug",
       minify: {
         collapseWhitespace: true,
         removeComments: true,
         removeRedundantAttributes: true,
         removeScriptTypeAttributes: true,
         removeStyleLinkTypeAttributes: true,
-        useShortDoctype: true
-      }
-    })
+        useShortDoctype: true,
+      },
+    }),
   ],
   devServer: {
-    stats: "errors-only"
-  }
+    stats: "errors-only",
+  },
 };

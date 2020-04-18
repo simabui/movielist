@@ -1,4 +1,3 @@
 "use strict";
-import "./notify-alert.js";
-import "./handle-search.js";
+import "./movieGallery";
 import "./../sass/styles.scss";

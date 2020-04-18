@@ -6,12 +6,12 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"]
-      }
-    ]
+        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
+      },
+    ],
   },
-  plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],
+  plugins: [new HtmlWebpackPlugin({ template: "./src/index.pug" })],
   devServer: {
-    stats: "errors-only"
-  }
+    stats: "errors-only",
+  },
 };
