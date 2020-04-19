@@ -1,11 +1,13 @@
 {
-  "name": "webpack_test",
+  "name": "movie-list",
+  "homepage": "https://simabui.github.io/movielist/",
   "version": "1.0.0",
   "description": "this is test package of webpack",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --env.mode development",
     "build": "webpack --env.mode production",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "author": "an dyk bui",
