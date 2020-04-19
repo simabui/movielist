@@ -1,8 +1,8 @@
 "use strict";
 
-export function setData(data) {
+export function setData(name, data) {
   const dataJSON = JSON.stringify(data);
-  localStorage.setItem("movies", dataJSON);
+  localStorage.setItem(name, dataJSON);
 }
 
 export function getData() {

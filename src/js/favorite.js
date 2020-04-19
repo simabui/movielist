@@ -1,5 +1,5 @@
 "use strict";
-import { setData, getData } from "./localStorage";
+import { setData } from "./localStorage";
 
 export default class Favoritelist {
   constructor() {
@@ -12,11 +12,11 @@ export default class Favoritelist {
 
   set collection(val) {
     this._collection.push(...val);
-    setData(this._collection);
+    setData("movies", this._collection);
   }
 
   delete(id) {
     this._collection = this._collection.filter((movie) => movie.id !== id);
-    setData(this._collection);
+    setData("movies", this._collection);
   }
 }
