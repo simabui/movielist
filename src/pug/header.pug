@@ -11,3 +11,12 @@ div.menu
     option(value="adventure") Adventure
     option(value="sport") Sport
     option(value="biography") Biography
+  div.menu__view
+    input(type="radio" name="view" id="block" class="radio")
+    label(for="block" class="menu__view-radio menu__view-list" )
+      i(class="fas fa-th")
+      span(class="radio-checked")
+    input(type="radio" name="view" id="grid" checked="checked" class="radio")
+    label(for="grid" class="menu__view-radio menu__view-grid")
+      i(class="fa fa-list-ul")
+      span(class="radio-checked")

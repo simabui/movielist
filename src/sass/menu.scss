@@ -1,6 +1,7 @@
 .menu {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   &__select {
     background-color: transparent;
@@ -11,4 +12,35 @@
     cursor: pointer;
   }
   margin-bottom: 20px;
+
+  // radio button
+
+  &__view {
+    width: 90px;
+    display: flex;
+    justify-content: space-between;
+
+    input {
+      opacity: 0;
+      width: 10px;
+      height: 10px;
+    }
+
+    &-radio {
+      position: relative;
+      padding: 6px;
+      cursor: pointer;
+    }
+  }
+}
+
+.radio:checked + .menu__view-radio > .radio-checked {
+  display: inline-block;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: transparent;
+  border: 1px solid #000;
+  position: absolute;
 }

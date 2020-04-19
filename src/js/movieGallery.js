@@ -156,7 +156,7 @@ function handleGenres() {
       return filtered;
     }
   }, []);
-
   const moviesMarkup = movieTemp(selectedMovies);
   movies.innerHTML = moviesMarkup;
+  addStarToGallery();
 }
