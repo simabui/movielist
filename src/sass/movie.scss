@@ -8,15 +8,9 @@
 .movie {
   align-items: center;
   margin-top: 10px;
-  flex-basis: 150px;
   cursor: pointer;
   position: relative;
   transition: transform 0.2s linear;
-
-  &:hover {
-    display: block;
-    transform: scale(1.1);
-  }
 
   &__image {
     width: 120px;
@@ -35,16 +29,8 @@
 }
 // favorie star
 .star {
-  width: 30px;
-  height: 30px;
   cursor: pointer;
   z-index: 999;
-
-  &-gallery {
-    position: absolute;
-    right: 5px;
-    top: -10px;
-  }
 
   &-img {
     background-image: url("../images/star.svg");
@@ -52,5 +38,80 @@
 
   &-img-active {
     background-image: url("../images/star-active.svg");
+  }
+}
+
+.grid-view {
+  flex-basis: 150px;
+
+  &:hover {
+    display: block;
+    transform: scale(1.1);
+  }
+
+  .star {
+    width: 30px;
+    height: 30px;
+
+    &-grid {
+      position: absolute;
+      right: 5px;
+      top: -10px;
+    }
+  }
+}
+
+.list-view {
+  flex-basis: 90%;
+  display: flex;
+  padding: 26px 20px;
+  background-color: #ababab;
+  border-radius: 10px;
+
+  &__block {
+    padding: 0 20px;
+  }
+  .star,
+  .star-img-active {
+    width: 30px;
+    height: 30px;
+  }
+
+  .star {
+    &-list {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+    }
+  }
+
+  .movie__description {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .movie__year {
+    margin: 0;
+  }
+
+  &__genres {
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  &__genre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 130px;
+    height: 37px;
+    padding: 8px 20px;
+    background-color: #d5d4d4;
+    border-radius: 5px;
+    margin-top: 10px;
   }
 }

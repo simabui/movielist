@@ -12,11 +12,11 @@ div.menu
     option(value="sport") Sport
     option(value="biography") Biography
   div.menu__view
-    input(type="radio" name="view" id="block" class="radio")
-    label(for="block" class="menu__view-radio menu__view-list" )
+    input(type="radio" name="view" id="grid" class="radio" checked="checked" value="grid")
+    label(for="grid" class="menu__view-radio menu__view-grid" )
       i(class="fas fa-th")
       span(class="radio-checked")
-    input(type="radio" name="view" id="grid" checked="checked" class="radio")
-    label(for="grid" class="menu__view-radio menu__view-grid")
+    input(type="radio" name="view" id="list" class="radio" value="list")
+    label(for="list" class="menu__view-radio menu__view-list")
       i(class="fa fa-list-ul")
       span(class="radio-checked")

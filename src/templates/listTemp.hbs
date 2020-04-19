@@ -1,0 +1,18 @@
+{{#this}}
+<div class="movie list-view" data-id={{id}}>
+  <div class="star star-list star-img"></div>
+  <img src={{img}} alt="poster" class="movie__image" />
+  <div class="list-view__block">
+    <div class="movie__description">
+      <div class="movie__title">{{name}}</div>
+      <div class="movie__year">{{year}}</div>
+    </div>
+    <p>{{description}}</p>
+    <ul class="list-view__genres">
+      {{#each genres}}
+      <li class="list-view__genre">{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
+{{/this}}

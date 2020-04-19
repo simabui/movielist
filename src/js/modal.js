@@ -75,7 +75,7 @@ function handleKeyDown(e) {
 
 // check if already added to fav
 function checkIfFav(id) {
-  const movies = getData();
+  const movies = getData("movies");
 
   if (movies && movies.length > 0) {
     const modalStar = document.querySelector(".modal__star");

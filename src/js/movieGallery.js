@@ -1,9 +1,10 @@
 "use strict";
 import { getMovies } from "./apiService";
-import movieTemp from "../templates/collections-temp.hbs";
+import gridTemp from "../templates/gridTemp.hbs";
+import listTemp from "../templates/listTemp.hbs";
 import favTemp from "../templates/favTemp.hbs";
 import FavoriteList from "./favorite";
-import { getData } from "./localStorage";
+import { getData, setData } from "./localStorage";
 import { showModal } from "./modal";
 //object
 export const favMovies = new FavoriteList();
@@ -12,17 +13,21 @@ let moviesCollection = [];
 const movies = document.querySelector("#movies");
 const favorite = document.querySelector(".favorite-list");
 const genres = document.querySelector("#genre");
+const grid = document.querySelector("#grid");
+const list = document.querySelector("#list");
 
 movies.addEventListener("click", handleMovie);
 favorite.addEventListener("click", handleDelete);
 genres.addEventListener("change", handleGenres);
+grid.addEventListener("click", handleRadio);
+list.addEventListener("click", handleRadio);
 
 // render Movies
 async function renderMovies() {
   const data = await getMovies();
   moviesCollection.push(...editGenres(data));
-  const moviesMarkup = movieTemp(moviesCollection);
-  movies.insertAdjacentHTML("beforeend", moviesMarkup);
+  const moviesMarkup = gridTemp(moviesCollection);
+  movies.innerHTML = moviesMarkup;
 }
 
 window.onload = function () {
@@ -115,7 +120,7 @@ export function removeStarFromGallery(id) {
 
 function findMatched() {
   const moviesAll = document.querySelectorAll(".movie");
-  const movies = getData();
+  const movies = getData("movies");
 
   if (movies && movies.length > 0) {
     const locaclId = movies.map((movie) => movie.id);
@@ -130,7 +135,7 @@ function findMatched() {
 
 // render from local
 function renderListFromLocal() {
-  const movies = getData();
+  const movies = getData("movies");
   if (movies && movies.length > 0) {
     manageFav(movies, addToFav);
   }
@@ -146,6 +151,7 @@ function editGenres(data) {
   });
 }
 
+// filter by genres
 function handleGenres() {
   const genre = genres.value;
   const selectedMovies = moviesCollection.reduce((acc, currItem, id, arr) => {
@@ -156,7 +162,33 @@ function handleGenres() {
       return filtered;
     }
   }, []);
-  const moviesMarkup = movieTemp(selectedMovies);
+
+  const typeView = getData("view");
+  let moviesMarkup;
+  if (typeView === "grid") {
+    moviesMarkup = gridTemp(selectedMovies);
+  } else {
+    moviesMarkup = listTemp(selectedMovies);
+  }
+
   movies.innerHTML = moviesMarkup;
+  addStarToGallery();
+}
+
+// change gallery view
+function handleRadio({ target }) {
+  if (target.value === "grid") {
+    changeView(target.value, gridTemp);
+    genres.value = "";
+  } else {
+    changeView(target.value, listTemp);
+    genres.value = "";
+  }
+}
+
+function changeView(value, callback) {
+  const moviesMarkup = callback(moviesCollection);
+  movies.innerHTML = moviesMarkup;
+  setData("view", value);
   addStarToGallery();
 }
