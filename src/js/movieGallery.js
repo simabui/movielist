@@ -7,21 +7,26 @@ import { getData } from "./localStorage";
 import { showModal } from "./modal";
 //object
 export const favMovies = new FavoriteList();
+let moviesCollection = [];
 
 const movies = document.querySelector("#movies");
 const favorite = document.querySelector(".favorite-list");
+const genres = document.querySelector("#genre");
 
 movies.addEventListener("click", handleMovie);
 favorite.addEventListener("click", handleDelete);
+genres.addEventListener("change", handleGenres);
 
 // render Movies
 async function renderMovies() {
   const data = await getMovies();
-  const moviesMarkup = movieTemp(data);
+  moviesCollection.push(...editGenres(data));
+  const moviesMarkup = movieTemp(moviesCollection);
   movies.insertAdjacentHTML("beforeend", moviesMarkup);
 }
 
 window.onload = function () {
+  renderListFromLocal();
   renderMovies().then(() => {
     // add stars to fav images from saved
     addStarToGallery();
@@ -124,9 +129,34 @@ function findMatched() {
 }
 
 // render from local
-(function () {
+function renderListFromLocal() {
   const movies = getData();
   if (movies && movies.length > 0) {
     manageFav(movies, addToFav);
   }
-})();
+}
+
+// fix genres capitalize
+function editGenres(data) {
+  return data.map((movie) => {
+    return {
+      ...movie,
+      genres: movie.genres.map((genre) => genre.toLowerCase()),
+    };
+  });
+}
+
+function handleGenres() {
+  const genre = genres.value;
+  const selectedMovies = moviesCollection.reduce((acc, currItem, id, arr) => {
+    if (genre === "") {
+      return arr;
+    } else {
+      const filtered = arr.filter((movie) => movie.genres.includes(genre));
+      return filtered;
+    }
+  }, []);
+
+  const moviesMarkup = movieTemp(selectedMovies);
+  movies.innerHTML = moviesMarkup;
+}
