@@ -44,10 +44,12 @@
     height: 300px;
   }
 
-  &__year {
+  &__info {
     max-width: 300px;
-    text-align: right;
     margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 
   &__genres {

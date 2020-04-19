@@ -1,4 +1,4 @@
-<div>
+<div class="modal__data">
   <div class="modal__main">
     <div class="modal__close">X</div>
     <img src={{img}} alt="poster" class="modal__image" />
@@ -7,7 +7,10 @@
       <p class="modal__text">{{description}}</p>
     </div>
   </div>
-  <div class="modal__year"><b>{{year}}</b></div>
+  <div class="modal__info">
+    <div class="star modal__star star-img"></div>
+    <div class="modal__year"><b>{{year}}</b></div>
+  </div>
   <div class="modal__secondary">
     <ul class="modal__genres">
       {{#each genres}}

@@ -11,6 +11,13 @@
   flex-basis: 150px;
   cursor: pointer;
   position: relative;
+  transition: transform 0.2s linear;
+
+  &:hover {
+    display: block;
+    transform: scale(1.1);
+  }
+
   &__image {
     width: 120px;
     height: 177px;
@@ -30,11 +37,14 @@
 .star {
   width: 30px;
   height: 30px;
-  position: absolute;
-  right: 5px;
-  top: -10px;
   cursor: pointer;
   z-index: 999;
+
+  &-gallery {
+    position: absolute;
+    right: 5px;
+    top: -10px;
+  }
 
   &-img {
     background-image: url("../images/star.svg");

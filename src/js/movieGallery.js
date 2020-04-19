@@ -1,21 +1,17 @@
 "use strict";
-import { getMovies, getMovie } from "./apiService";
+import { getMovies } from "./apiService";
 import movieTemp from "../templates/collections-temp.hbs";
-import modalTemp from "../templates/modalTemp.hbs";
 import favTemp from "../templates/favTemp.hbs";
 import FavoriteList from "./favorite";
 import { getData } from "./localStorage";
+import { showModal } from "./modal";
 //object
-const favMovies = new FavoriteList();
+export const favMovies = new FavoriteList();
 
 const movies = document.querySelector("#movies");
-
-const modal = document.querySelector(".modal");
-const modalOverlay = document.querySelector(".modal-overlay");
 const favorite = document.querySelector(".favorite-list");
 
 movies.addEventListener("click", handleMovie);
-modalOverlay.addEventListener("click", handleClose);
 favorite.addEventListener("click", handleDelete);
 
 // render Movies
@@ -32,7 +28,7 @@ window.onload = function () {
   });
 };
 
-async function handleMovie(e) {
+function handleMovie(e) {
   const parent = e.target.closest(".movie");
   if (e.target.classList.contains("star")) {
     // handleFavorite
@@ -53,40 +49,15 @@ async function handleMovie(e) {
   // show modal
   if (parent && !e.target.classList.contains("star")) {
     const id = parent.dataset.id;
-    const data = await getMovie(id);
-    const movieMarkup = modalTemp(data);
-    modal.innerHTML = movieMarkup;
-    modalOverlay.classList.add("modal-visible");
-
-    window.addEventListener("keydown", handleKeyDown);
+    showModal(id);
   }
-}
-
-// close modal
-function handleClose(e) {
-  if (e.target.classList.contains("modal__close")) {
-    closeModal();
-  }
-  if (e.target === e.currentTarget) {
-    closeModal();
-  }
-}
-
-function closeModal() {
-  modalOverlay.classList.remove("modal-visible");
-  window.removeEventListener("keydown", handleKeyDown);
-}
-
-function handleKeyDown(e) {
-  if (e.code !== "Escape") return;
-  closeModal();
 }
 
 function addToFav(movies) {
   favMovies.collection = movies;
 }
 
-function renderFavorite() {
+export function renderFavorite() {
   const edited = favMovies.collection.map((movie) => {
     return {
       movie: editTitle(movie.title),
@@ -97,9 +68,9 @@ function renderFavorite() {
   favorite.innerHTML = favMarkup;
 }
 
-function manageFav(title, func) {
+function manageFav(title, callback) {
   // addToFav(title);
-  func(title);
+  callback(title);
   renderFavorite();
 }
 
@@ -125,12 +96,12 @@ function handleDelete(e) {
 }
 
 /*  manage stars */
-function addStarToGallery() {
+export function addStarToGallery() {
   const matchedElem = findMatched();
   matchedElem.map((movie) => movie[0].classList.add("star-img-active"));
 }
 
-function removeStarFromGallery(id) {
+export function removeStarFromGallery(id) {
   const moviesAll = document.querySelectorAll(".movie");
   const matched = [...moviesAll].filter((movie) => movie.dataset.id == id);
   const star = matched[0].getElementsByClassName("star");
@@ -139,11 +110,17 @@ function removeStarFromGallery(id) {
 
 function findMatched() {
   const moviesAll = document.querySelectorAll(".movie");
-  const locaclId = getData().map((movie) => movie.id);
-  const matched = [...moviesAll].filter((movie) =>
-    locaclId.includes(movie.dataset.id)
-  );
-  return matched.map((movie) => movie.getElementsByClassName("star"));
+  const movies = getData();
+
+  if (movies && movies.length > 0) {
+    const locaclId = movies.map((movie) => movie.id);
+    const matched = [...moviesAll].filter((movie) =>
+      locaclId.includes(movie.dataset.id)
+    );
+    return matched.map((movie) => movie.getElementsByClassName("star"));
+  } else {
+    return [];
+  }
 }
 
 // render from local
