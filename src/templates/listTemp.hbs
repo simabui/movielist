@@ -1,7 +1,11 @@
 {{#this}}
 <div class="movie list-view" data-id={{id}}>
   <div class="star star-list star-img"></div>
+  {{#if img}}
   <img src={{img}} alt="poster" class="movie__image" />
+  {{else}}
+  <img src="../images/movie-placeholder.svg" alt="poster" class="movie__image" />
+  {{/if}}
   <div class="list-view__block">
     <div class="movie__description">
       <div class="movie__title">{{name}}</div>

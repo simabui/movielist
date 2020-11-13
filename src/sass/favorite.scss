@@ -1,4 +1,8 @@
 .favorite {
+  @include col();
+  @include size(3);
+  @include size-sm(6);
+  @include size-xs(12);
   margin-top: 10px;
   width: 260px;
   height: 300px;
@@ -7,6 +11,12 @@
 
   &__title {
     text-align: center;
+  }
+
+  &__desc {
+    text-align: center;
+    @include xs(font-size, 13px);
+    margin: 0;
   }
 
   &-list {

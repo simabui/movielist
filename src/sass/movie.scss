@@ -1,11 +1,16 @@
 .movies {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  width: 700px;
+  @include col();
+  @include size(8);
+  @include size-sm(12);
+  @include row-flex;
 }
 
 .movie {
+  @include col();
+  @include size(3);
+  @include size-sm(4);
+  @include size-xs(12);
+
   align-items: center;
   margin-top: 10px;
   cursor: pointer;
@@ -13,6 +18,9 @@
   transition: transform 0.2s linear;
 
   &__image {
+    @include sm(width, 100%);
+    @include sm(height, auto);
+
     width: 120px;
     height: 177px;
     margin: 0 auto;
@@ -42,11 +50,10 @@
 }
 
 .grid-view {
-  flex-basis: 150px;
-
   &:hover {
     display: block;
     transform: scale(1.1);
+    @include sm(transform, scale(1));
   }
 
   .star {
@@ -64,12 +71,18 @@
 .list-view {
   flex-basis: 90%;
   display: flex;
+  @include xs(display, block);
   padding: 26px 20px;
+  @include xs(padding, 20px 0);
   background-color: #ababab;
   border-radius: 10px;
 
   &__block {
     padding: 0 20px;
+
+    p {
+      @include xs(font-size, 13px);
+    }
   }
   .star,
   .star-img-active {
@@ -84,8 +97,11 @@
       top: 5px;
     }
   }
-
+  .movie__image {
+    width: 150px;
+  }
   .movie__description {
+    @include xs(margin-top, 5px);
     margin-top: 0;
     display: flex;
     align-items: center;

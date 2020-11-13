@@ -13,9 +13,11 @@
   transition: opacity 0.2s linear;
 }
 .modal {
-  max-width: 960px;
-  height: 500px;
-  padding: 20px 40px;
+  height: auto;
+  @include xs(height, 400px);
+  @include xs(overflow, scroll);
+  @include xs(font-size, 13px);
+  padding: 20px;
   border-radius: 4px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   position: relative;
@@ -26,22 +28,30 @@
     right: 34px;
     top: 10px;
     font-size: 40px;
+    @include xs(font-size, 20px);
     cursor: pointer;
   }
 
   &__main,
   &__secondary {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  &__description {
-    flex-basis: 477px;
+    @include row-flex();
   }
 
   &__image {
-    max-width: 250px;
-    height: 300px;
+    @include col();
+    @include size(4);
+    @include size-xs(12);
+    max-width: 100%;
+    @include xs(max-width, 150px);
+    @include xs(margin, 0 auto);
+    height: auto;
+    @include xs(max-height, 222px);
+  }
+
+  &__description {
+    @include col();
+    @include size(8);
+    @include size-xs(12);
   }
 
   &__info {
@@ -57,6 +67,10 @@
   }
 
   &__genres {
+    @include col();
+    @include size(4);
+    @include size-sm(6);
+    @include size-xs(12);
     margin: 0;
     list-style-type: none;
     display: flex;
@@ -77,7 +91,10 @@
   }
 
   &__emp {
-    // flex-grow: 2;
+    @include col();
+    @include size(8);
+    @include size-sm(6);
+    @include size-xs(12);
   }
 }
 
