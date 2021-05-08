@@ -47,7 +47,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "handlebars": "^4.7.2"
+    "handlebars": "^4.7.7"
   },
   "browserslist": [
     "defaults",
